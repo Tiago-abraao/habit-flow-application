@@ -37,6 +37,19 @@ Rastreador de hábitos focado em constância diária. Crie hábitos, marque os �
 
 Não há build nem dependências. Basta abrir o `index.html` no navegador (é necessária internet para carregar as CDNs).
 
+## 🚀 Como executar
+ 
+Não há build nem dependências.
+ 
+```bash
+# 1. Clone o repositório
+git clone https://github.com/Tiago-abraao/habit-flow-application
+ 
+# 2. Entre na pasta do projeto
+cd habit-flow-application
+```
+Em seguida, abra o `index.html` no navegador (é necessária internet para carregar as CDNs).
+
 ---
 
 ## 🗺️ Roadmap
