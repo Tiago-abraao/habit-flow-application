@@ -1,0 +1,37 @@
+ /* ==========================================================================
+           1. RESET & DESIGN TOKENS (PALETA AZUL E BRANCO)
+           ========================================================================== */
+        :root {
+            --primary-color: #2563eb;        /* Azul Vivo */
+            --primary-dark: #1d4ed8;         /* Azul Escuro */
+            --primary-hover: #1e40af;        /* Azul Accent Hover */
+            --primary-light: #eff6ff;       /* Azul Suave para Fundos */
+            --accent-blue: #3b82f6;          /* Destaques e badges */
+            
+            --bg-body: #f8fafc;              /* Fundo limpo e suave */
+            --card-bg: #ffffff;              /* Componentes e cards em branco */
+            
+            --text-main: #0f172a;            /* Texto principal escuro */
+            --text-secondary: #475569;       /* Subtítulos e labels */
+            --text-muted: #94a3b8;           /* Textos discretos */
+            
+            --border-color: #e2e8f0;         /* Bordas sutis */
+            --border-focus: #93c5fd;         /* Borda ao focar */
+            
+            --success-color: #10b981;       /* Verde para status concluído */
+            --danger-color: #ef4444;        /* Vermelho para remoção/reset */
+            
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(37, 99, 235, 0.06), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(37, 99, 235, 0.08), 0 4px 6px -2px rgba(0,0,0,0.05);
+        }
+
+      
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding-bottom: 3rem;
+            line-height: 1.5;
+        }
