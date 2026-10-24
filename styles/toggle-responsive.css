@@ -1,0 +1,16 @@
+@media (max-width: 600px) {
+    .menu-button {
+        display: block;
+    }
+    
+    .menu-button .toggle  {
+        width: 100%;
+        border: none;
+        cursor: pointer;
+    }
+
+    .menu-button .toggle:focus-visible {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+    }
+}

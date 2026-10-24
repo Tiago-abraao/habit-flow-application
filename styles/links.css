@@ -1,0 +1,20 @@
+.links-content .links-list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.links-content .links-list li {
+    list-style: none;
+}
+
+.links-content .links-list li a {
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+.links-content .links-list li a:hover {
+    color: #fff;
+}
+

@@ -4,11 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Habitflow - Rastreamento de hábitos</title>
-    <link rel="stylesheet" href="../styles/reset.css">
-    <link rel="stylesheet" href="../styles/base.css">
-    <link rel="stylesheet" href="../styles/header.css">
-    <link rel="stylesheet" href="../styles/brand.css">
-    <link rel="stylesheet" href="../styles/buttons.css">
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/brand.css">
+    <link rel="stylesheet" href="styles/buttons.css">
+    <link rel="stylesheet" href="styles/toggle.css">
+    <link rel="stylesheet" href="styles/links.css">
+    <link rel="stylesheet" href="styles/links-responsive.css">
+    <link rel="stylesheet" href="styles/toggle-responsive.css">
+    <link rel="stylesheet" href="styles/header-responsive.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu,close" />
 </head>
 <body>
     <header>
@@ -19,7 +25,23 @@
                 </div>
                 <h1 class="brad-title">Habitflow</h1>
             </div>
+            <div class="menu-button">
+             <button  class="toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="list-links">
+                <span class="material-symbols-outlined icon-menu">
+              menu
+            </span>
+    </button>
+            </div>
+    <nav class="links-content">
+        <ul id="links-list" class="links-list">
+            <li><a href="#">Início</a></li>
+            <li><a href="#">Sobre</a></li>
+            <li><a href="#">Serviços</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
+    </nav>
         </div>
     </header>
+    <script src="js/toggle.js"></script>
 </body>
 </html>

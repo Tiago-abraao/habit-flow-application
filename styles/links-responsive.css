@@ -1,0 +1,21 @@
+@media (max-width: 600px) {
+    .links-content{
+        width: 100%;
+    }
+    .links-content .links-list {
+        display: none;
+        flex-direction: column;
+    }
+
+    .links-content .links-list.open {
+        display: block;
+
+    }
+
+    .links-content .links-list li a {
+        text-align: center;
+        display: block;
+        margin: 0.5rem 0;
+        background-color: rgb(166, 166, 221);
+    }
+}
