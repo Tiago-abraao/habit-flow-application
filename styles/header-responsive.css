@@ -1,8 +1,8 @@
-@media (max-width: 600px) { 
-
-.header-content {
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-}
+@media (max-width: 600px) {
+    .header-content {
+        flex-direction: row;             
+        justify-content: space-between; 
+        align-items: center;
+        flex-wrap: nowrap;
+    }
 }

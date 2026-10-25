@@ -1,32 +1,45 @@
-const toggle = document.querySelector('.toggle');
-const icon = toggle.querySelector('.material-symbols-outlined');
-const list = document.querySelector('.links-list');
+export function initSidebarToggle() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const closeBtn = document.getElementById('close-btn');
+    const sidebar = document.getElementById('sidebar-nav');
+    const overlay = document.getElementById('sidebar-overlay');
 
+    if (!menuToggle || !sidebar || !overlay) {
+        return;
+    }
 
+    const openSidebar = () => {
+        sidebar.classList.add('active');
+        overlay.classList.add('active');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    };
 
-// Função para abrir/fechar o menu e trocar o ícone
-function toggleMenu() {
-  const isOpen = list.classList.toggle('open');
-  
-  // Atualiza a acessibilidade
-  toggle.setAttribute('aria-expanded', isOpen);
-  
-  if (isOpen) {
-    toggle.setAttribute('aria-label', 'Fechar menu');
-    icon.textContent = 'close'; // Troca o ícone de 3 barras para o "X"
-  } else {
-    toggle.setAttribute('aria-label', 'Abrir menu');
-    icon.textContent = 'menu';  // Volta para o ícone de 3 barras
-  }
+    const closeSidebar = () => {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    };
+
+    const newMenuToggle = menuToggle.cloneNode(true);
+    menuToggle.parentNode.replaceNode ? menuToggle.replaceWith(newMenuToggle) : menuToggle.parentNode.replaceChild(newMenuToggle, menuToggle);
+    
+    const activeToggle = document.getElementById('menu-toggle');
+    
+    activeToggle.addEventListener('click', openSidebar);
+    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+    if (overlay) overlay.addEventListener('click', closeSidebar);
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+            closeSidebar();
+        }
+    });
 }
 
-// Escuta o clique no botão
-toggle.addEventListener('click', toggleMenu);
-
-// Fecha o menu se apertar "Esc"
-window.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && list.classList.contains('open')) {
-    toggleMenu();
-    toggle.focus();
-  }
+document.addEventListener("components:loaded", () => {
+    initSidebarToggle();
 });

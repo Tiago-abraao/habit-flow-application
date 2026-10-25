@@ -1,15 +1,15 @@
 @media (max-width: 600px) {
-    .links-content{
+    .links-content {
         width: 100%;
     }
+
     .links-content .links-list {
         display: none;
         flex-direction: column;
     }
 
-    .links-content .links-list.open {
-        display: block;
-
+    .links-content .links-list.active {
+        display: flex;
     }
 
     .links-content .links-list li a {
