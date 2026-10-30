@@ -1,45 +1,41 @@
+
 export function initSidebarToggle() {
     const menuToggle = document.getElementById('menu-toggle');
     const closeBtn = document.getElementById('close-btn');
     const sidebar = document.getElementById('sidebar-nav');
     const overlay = document.getElementById('sidebar-overlay');
 
-    if (!menuToggle || !sidebar || !overlay) {
-        return;
-    }
+    if (!menuToggle || !sidebar || !overlay) return;
 
-    const openSidebar = () => {
-        sidebar.classList.add('active');
-        overlay.classList.add('active');
-        menuToggle.setAttribute('aria-expanded', 'true');
-        overlay.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-    };
-
-    const closeSidebar = () => {
-        sidebar.classList.remove('active');
-        overlay.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        overlay.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-    };
-
+    // Clona e substitui o botão original
     const newMenuToggle = menuToggle.cloneNode(true);
-    menuToggle.parentNode.replaceNode ? menuToggle.replaceWith(newMenuToggle) : menuToggle.parentNode.replaceChild(newMenuToggle, menuToggle);
-    
-    const activeToggle = document.getElementById('menu-toggle');
-    
-    activeToggle.addEventListener('click', openSidebar);
-    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
-    if (overlay) overlay.addEventListener('click', closeSidebar);
+    menuToggle.replaceWith(newMenuToggle);
 
+    // Centraliza a lógica de abertura e fechamento
+    const toggleSidebar = (isOpen) => {
+        sidebar.classList.toggle('active', isOpen);
+        overlay.classList.toggle('active', isOpen);
+
+        newMenuToggle.setAttribute('aria-expanded', String(isOpen));
+        overlay.setAttribute('aria-hidden', String(!isOpen));
+
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+    };
+
+    // Eventos de abertura e fechamento
+    newMenuToggle.addEventListener('click', () => toggleSidebar(true));
+
+    closeBtn?.addEventListener('click', () => toggleSidebar(false));
+
+    overlay.addEventListener('click', () => toggleSidebar(false));
+
+    // Fechar com Escape
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && sidebar.classList.contains('active')) {
-            closeSidebar();
+            toggleSidebar(false);
         }
     });
 }
 
-document.addEventListener("components:loaded", () => {
-    initSidebarToggle();
-});
+// Inicialização após carregamento dos componentes
+document.addEventListener('components:loaded', initSidebarToggle);
