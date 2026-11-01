@@ -1,0 +1,17 @@
+ .card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f1f5f9;
+ }
+
+ .chart-wrapper {
+     position: relative;
+     height: 260px;
+     width: 100%;
+ }

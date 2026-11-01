@@ -1,0 +1,29 @@
+<section class="card">
+    <h2 class="card-title">
+        <i class="fa-solid fa-plus"></i>
+        Cadastrar Novo Hábito
+    </h2>
+
+    <form id="habit-form" class="habit-form">
+
+    <input type="text" id="habit-name" class="form-input" placeholder="Qual hábito você quer criar?" required
+    maxlength="40">
+
+        <select id="habit-category" class="form-input form-input--category" aria-label="Categoria do hábito" required>
+            <option value="" disabled selected>Selecione a categoria</option>
+            <option value="Saúde">Saúde</option>
+            <option value="Estudo">Estudo</option>
+            <option value="Trabalho">Trabalho</option>
+            <option value="Exercício">Exercício</option>
+            <option value="Alimentação">Alimentação</option>
+            <option value="Bem-estar">Bem-estar</option>
+            <option value="Finanças">Finanças</option>
+            <option value="Outros">Outros</option>
+        </select>
+
+        <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-plus"></i> Adicionar Hábito
+        </button>
+
+    </form>
+</section>
