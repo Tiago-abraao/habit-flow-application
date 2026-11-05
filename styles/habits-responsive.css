@@ -1,0 +1,34 @@
+@media (max-width: 900px) {
+     .habit-row {
+         grid-template-columns: 1fr;
+         gap: 1rem;
+     }
+
+     .habit-actions {
+         display: flex;
+         justify-content: flex-end;
+     }
+ }
+
+ @media (max-width: 600px) {
+     .days-grid {
+         gap: 0.25rem;
+     }
+
+     .day-cell {
+         padding: 0.4rem 0.1rem;
+         min-height: 52px;
+     }
+
+     .day-label {
+         font-size: 0.6rem;
+     }
+
+     .day-date {
+         font-size: 0.65rem;
+     }
+
+     .timestamp-badge {
+         font-size: 0.55rem;
+     }
+ }

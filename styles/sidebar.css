@@ -1,54 +1,54 @@
-/* ==========================================
-   VARIÁVEIS DE DESIGN DO COMPONENTE
-========================================== */
 :root {
-    --primary-color: #6366f1;
-    --primary-hover: #4f46e5;
-    --bg-sidebar: #0f172a;
-    --text-color: #f8fafc;
-    --text-muted: #94a3b8;
-    --border-color: rgba(255, 255, 255, 0.1);
-    --hover-bg: rgba(255, 255, 255, 0.08);
-    --overlay-bg: rgba(15, 23, 42, 0.6);
+    --sidebar-bg: #0f172a;
+    --sidebar-text: #f8fafc;
+    --sidebar-muted: #94a3b8;
+    --sidebar-border: rgba(255, 255, 255, 0.1);
+    --sidebar-hover-bg: rgba(255, 255, 255, 0.08);
+    --sidebar-overlay-bg: rgba(15, 23, 42, 0.6);
     --sidebar-width: 280px;
-    --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-fast: 0.2s ease-in-out;
+    --sidebar-transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    --sidebar-transition-fast: 0.2s ease-in-out;
 }
 
 .menu-toggle {
-    background: #6366f1;
-    border: 1px solid var(--border-color);
-    color: var(--text-color);
-    font-size: 1.25rem;
-    padding: 0.6rem 0.8rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: var(--transition-fast);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     margin-left: auto;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--sidebar-border);
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    color: var(--sidebar-text);
+    cursor: pointer;
+    font-size: 1.25rem;
+    transition: background-color var(--sidebar-transition-fast),
+        border-color var(--sidebar-transition-fast),
+        color var(--sidebar-transition-fast);
 }
 
 .menu-toggle:hover {
-    background-color: var(--hover-bg);
     border-color: var(--primary-color);
+    background-color: var(--sidebar-hover-bg);
     color: var(--primary-color);
+}
+
+.menu-toggle:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
 }
 
 .sidebar-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: var(--overlay-bg);
+    inset: 0;
+    z-index: 999;
+    background-color: var(--sidebar-overlay-bg);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    z-index: 999;
     opacity: 0;
     visibility: hidden;
-    transition: opacity var(--transition-smooth), visibility var(--transition-smooth);
+    transition: opacity var(--sidebar-transition-smooth),
+        visibility var(--sidebar-transition-smooth);
 }
 
 .sidebar-overlay.active {
@@ -58,70 +58,74 @@
 
 .sidebar-nav {
     position: fixed;
-    top: 0;
-    right: calc(-1 * var(--sidebar-width));
-    width: var(--sidebar-width);
-    height: 100vh;
-    background-color: var(--bg-sidebar);
-    box-shadow: 8px 0 32px rgba(0, 0, 0, 0.35);
-    border-right: 1px solid var(--border-color);
+    inset-block: 0;
+    right: 0;
     z-index: 1000;
     display: flex;
+    width: min(var(--sidebar-width), 85vw);
+    height: 100vh;
+    height: 100dvh;
     flex-direction: column;
     padding: 1.5rem;
-    transition: right var(--transition-smooth);
+    transform: translateX(100%);
+    border-left: 1px solid var(--sidebar-border);
+    background-color: var(--sidebar-bg);
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.35);
+    transition: transform var(--sidebar-transition-smooth);
 }
 
 .sidebar-nav.active {
-    right: 0;
+    transform: translateX(0);
 }
 
 .sidebar-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding-bottom: 1.25rem;
+    justify-content: space-between;
     margin-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--sidebar-border);
 }
 
 .sidebar-title {
     display: flex;
     align-items: center;
     gap: 0.6rem;
+    color: var(--sidebar-text);
     font-size: 1rem;
     font-weight: 600;
-    color: var(--text-color);
 }
 
 .close-btn {
-    background: transparent;
-    border: none;
-    color: var(--text-muted);
-    font-size: 1.25rem;
+    display: grid;
     width: 36px;
     height: 36px;
-    border-radius: 8px;
-    display: grid;
     place-items: center;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--sidebar-muted);
     cursor: pointer;
-    transition: var(--transition-fast);
+    font-size: 1.25rem;
+    transition: color var(--sidebar-transition-fast),
+        background-color var(--sidebar-transition-fast),
+        transform var(--sidebar-transition-fast);
 }
 
 .close-btn:hover {
-    color: var(--text-color);
-    background-color: var(--hover-bg);
     transform: rotate(90deg);
+    background-color: var(--sidebar-hover-bg);
+    color: var(--sidebar-text);
 }
 
 .links-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
+    flex: 1;
     flex-direction: column;
     gap: 0.5rem;
-    flex: 1; 
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .nav-item {
@@ -129,24 +133,32 @@
     align-items: center;
     gap: 1rem;
     padding: 0.85rem 1rem;
-    color: var(--text-muted);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.95rem;
     border-radius: 8px;
-    transition: var(--transition-fast);
+    color: var(--sidebar-muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color var(--sidebar-transition-fast),
+        color var(--sidebar-transition-fast),
+        transform var(--sidebar-transition-fast);
 }
 
 .nav-item i {
-    font-size: 1.1rem;
     width: 20px;
+    font-size: 1.1rem;
     text-align: center;
 }
 
 .nav-item:hover {
-    background-color: var(--hover-bg);
-    color: var(--text-color);
     transform: translateX(-4px);
+    background-color: var(--sidebar-hover-bg);
+    color: var(--sidebar-text);
+}
+
+.nav-item:focus-visible,
+.close-btn:focus-visible {
+    outline: 2px solid var(--primary-light);
+    outline-offset: 2px;
 }
 
 .nav-item.active {
@@ -155,14 +167,29 @@
 }
 
 .nav-item.active:hover {
-    background-color: var(--primary-hover);
     transform: none;
+    background-color: var(--primary-hover);
 }
 
 .sidebar-footer {
     padding-top: 1.25rem;
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--sidebar-border);
+    color: var(--sidebar-muted);
     font-size: 0.8rem;
-    color: var(--text-muted);
     text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .menu-toggle,
+    .sidebar-overlay,
+    .sidebar-nav,
+    .close-btn,
+    .nav-item {
+        transition: none;
+    }
+
+    .close-btn:hover,
+    .nav-item:hover {
+        transform: none;
+    }
 }
