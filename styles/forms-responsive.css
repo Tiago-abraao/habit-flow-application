@@ -1,0 +1,26 @@
+@media (max-width: 699px) {
+    .form-input {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 700px) {
+    .habit-form {
+        flex-direction: row;
+        align-items: stretch;
+    }
+
+    .form-input--name {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .form-input--category {
+        flex: 0 0 220px;
+        width: 220px;
+    }
+
+    .habit-form .btn {
+        width: auto;
+    }
+}
