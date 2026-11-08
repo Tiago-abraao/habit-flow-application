@@ -1,4 +1,4 @@
- const ProgressChart = {
+ export const ProgressChart = {
             chartInstance: null,
 
             render(last7Days, habits) {
