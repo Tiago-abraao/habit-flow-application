@@ -14,11 +14,9 @@ Aplicação de acompanhamento de hábitos feita com HTML, CSS e JavaScript puro.
 ```text
 components/          Fragmentos HTML carregados pela aplicação
 js/
-  components/        Carregamento e composição dos fragmentos
-  domain/            Regras de negócio dos hábitos
-  services/          Datas e persistência
-  ui/                Formulário, lista, gráfico e interações
-  utils/             Funções auxiliares de apresentação
+  components/        Carregamento de HTML e componentes de interface
+  services/          Regras de hábitos, datas e persistência
+  utils/             Funções auxiliares
   main.js            Ponto de entrada e coordenação da aplicação
 styles/
   base/              Reset e estilos globais
@@ -27,7 +25,7 @@ styles/
   responsive/        Ajustes responsivos
 ```
 
-Cada módulo mantém uma responsabilidade específica. `js/main.js` coordena a inicialização, enquanto os módulos de domínio, serviços e interface podem evoluir de forma independente.
+Cada módulo mantém uma responsabilidade específica. `js/main.js` carrega os fragmentos HTML e inicializa serviços e componentes, que podem evoluir de forma independente.
 
 ## Como executar
 

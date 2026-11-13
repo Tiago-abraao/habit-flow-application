@@ -3,19 +3,19 @@ export const dateService = {
     getFormattedDate(dateObj) {
         const year = dateObj.getFullYear();
         const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-        const day = String(dateObj.getDate()).padStart(2, '0');
-        return `${year}-${month}-${day}`;
+        const dayOfMonth = String(dateObj.getDate()).padStart(2, '0');
+        return `${year}-${month}-${dayOfMonth}`;
     },
 
     // Retorna exibição para o cabeçalho do dia (ex: "Seg - 17/10")
     getDisplayDate(dateObj) {
         const weekdays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
         const dayName = weekdays[dateObj.getDay()];
-        const day = String(dateObj.getDate()).padStart(2, '0');
+        const dayOfMonth = String(dateObj.getDate()).padStart(2, '0');
         const month = String(dateObj.getMonth() + 1).padStart(2, '0');
         return {
             dayName,
-            shortDate: `${day}/${month}`
+            shortDate: `${dayOfMonth}/${month}`
         };
     },
 
@@ -29,12 +29,12 @@ export const dateService = {
     getLast7Days() {
         const days = [];
         for (let i = 6; i >= 0; i--) {
-            const d = new Date();
-            d.setDate(d.getDate() - i);
+            const dayDate = new Date();
+            dayDate.setDate(dayDate.getDate() - i);
 
-            const display = this.getDisplayDate(d);
+            const display = this.getDisplayDate(dayDate);
             days.push({
-                dateString: this.getFormattedDate(d),
+                dateString: this.getFormattedDate(dayDate),
                 dayName: display.dayName,
                 shortDate: display.shortDate,
                 isToday: i === 0

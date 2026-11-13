@@ -85,8 +85,8 @@ export const HabitList = {
     },
 
     bindEvents(onToggleDay, onDeleteHabit) {
-        this.container.onclick = (e) => {
-            const dayCell = e.target.closest('.day-cell');
+        this.container.onclick = (event) => {
+            const dayCell = event.target.closest('.day-cell');
 
             if (dayCell) {
                 const habitId = dayCell.getAttribute('data-habit-id');
@@ -96,10 +96,10 @@ export const HabitList = {
                 return;
             }
 
-            const deleteBtn = e.target.closest('[data-action="delete"]');
+            const deleteButton = event.target.closest('[data-action="delete"]');
 
-            if (deleteBtn) {
-                const habitId = deleteBtn.getAttribute('data-id');
+            if (deleteButton) {
+                const habitId = deleteButton.getAttribute('data-id');
                 onDeleteHabit(habitId);
             }
         };

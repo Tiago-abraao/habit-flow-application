@@ -9,8 +9,8 @@ export const HabitForm = {
         const form = document.getElementById('habit-form');
         if (!form) return;
 
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
 
             const nameInput = document.getElementById('habit-name');
             const categoryInput = document.getElementById('habit-category');

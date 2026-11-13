@@ -12,10 +12,10 @@
                 }
 
                 // Cálculo total de hábitos concluídos por dia (Logica)
-                const labels = last7Days.map(d => `${d.dayName} (${d.shortDate})`);
-                const dataValues = last7Days.map(d => {
+                const labels = last7Days.map(day => `${day.dayName} (${day.shortDate})`);
+                const dataValues = last7Days.map(day => {
                     return habits.reduce((acc, habit) => {
-                        return (habit.history && habit.history[d.dateString] && habit.history[d.dateString].completed) ? acc + 1 : acc;
+                        return (habit.history && habit.history[day.dateString] && habit.history[day.dateString].completed) ? acc + 1 : acc;
                     }, 0);
                 });
 

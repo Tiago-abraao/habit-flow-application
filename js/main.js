@@ -1,11 +1,11 @@
 
-import './components/componentLoader.js';
-import { habitService } from './domain/habitService.js';
+import { loadComponents } from './components/componentLoader.js';
+import { habitService } from './services/habitService.js';
 import { dateService } from './services/dateService.js';
-import { HabitForm } from './ui/habitForm.js';
-import { HabitList } from './ui/habitList.js';
-import { ProgressChart } from './ui/progressChart.js';
-import { initSidebarToggle } from './ui/toggle.js';
+import { HabitForm } from './components/habitForm.js';
+import { HabitList } from './components/habitList.js';
+import { ProgressChart } from './components/progressChart.js';
+import { initializeSidebarToggle } from './components/sidebarToggle.js';
 import { sanitizeUtils } from './utils/sanitize.js';
 
 function renderApp() {
@@ -42,9 +42,7 @@ function renderApp() {
         (habitId) => {
             habitService.deleteHabit(habitId);
 
-            if (typeof sanitizeUtils.showToast === 'function') {
-                sanitizeUtils.showToast('Hábito removido.');
-            }
+            sanitizeUtils.showToast('Hábito removido.');
 
             renderApp();
         }
@@ -54,43 +52,33 @@ function renderApp() {
     ProgressChart.render(last7Days, habits);
 }
 
-// Inicialização após carregamento dos componentes
-document.addEventListener('components:loaded', () => {
-    initSidebarToggle();
-
-    // 1. Inicializa armazenamento
+function initializeApp() {
+    initializeSidebarToggle();
     habitService.init();
 
-    // 2. Inicializa formulário
     HabitForm.init((name, category) => {
         habitService.addHabit(name, category);
-
-        if (typeof sanitizeUtils.showToast === 'function') {
-            sanitizeUtils.showToast('Hábito adicionado com sucesso!');
-        }
-
+        sanitizeUtils.showToast('Hábito adicionado com sucesso!');
         renderApp();
     });
 
-    // 3. Configura botão de reset
-    const btnResetAll = document.getElementById('btn-reset-all');
+    const resetAllButton = document.getElementById('btn-reset-all');
 
-    if (btnResetAll) {
-        btnResetAll.addEventListener('click', () => {
+    resetAllButton?.addEventListener('click', () => {
+        if (!confirm('Tem certeza de que deseja apagar todos os hábitos e históricos?')) {
+            return;
+        }
 
-            if (confirm('Tem certeza de que deseja apagar todos os hábitos e históricos?')) {
+        habitService.clearAllData();
+        sanitizeUtils.showToast('Todos os dados foram apagados.');
+        renderApp();
+    });
 
-                habitService.clearAllData();
-
-                if (typeof sanitizeUtils.showToast === 'function') {
-                    sanitizeUtils.showToast('Todos os dados foram apagados.');
-                }
-
-                renderApp();
-            }
-        });
-    }
-
-    // 4. Primeira renderização
     renderApp();
-});
+}
+
+loadComponents()
+    .then(initializeApp)
+    .catch((error) => {
+        console.error('Não foi possível inicializar o HabitFlow.', error);
+    });
