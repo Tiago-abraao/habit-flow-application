@@ -10,11 +10,14 @@ export const dateService = {
     // Retorna exibição para o cabeçalho do dia (ex: "Seg - 17/10")
     getDisplayDate(dateObj) {
         const weekdays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+        const weekdaysFull = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
         const dayName = weekdays[dateObj.getDay()];
+        const fullDayName = weekdaysFull[dateObj.getDay()];
         const dayOfMonth = String(dateObj.getDate()).padStart(2, '0');
         const month = String(dateObj.getMonth() + 1).padStart(2, '0');
         return {
             dayName,
+            fullDayName,
             shortDate: `${dayOfMonth}/${month}`
         };
     },
@@ -36,6 +39,7 @@ export const dateService = {
             days.push({
                 dateString: this.getFormattedDate(dayDate),
                 dayName: display.dayName,
+                fullDayName: display.fullDayName,
                 shortDate: display.shortDate,
                 isToday: i === 0
             });
