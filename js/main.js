@@ -1,10 +1,12 @@
 
-import { habitService } from './js/habitService.js';
-import { dateService } from './js/dateService.js';
-import { HabitForm } from './js/habitForm.js';
-import { HabitList } from './js/habitList.js';
-import { ProgressChart } from './js/progressChart.js';
-import { sanitizeUtils } from './js/sanitize.js';
+import './components/componentLoader.js';
+import { habitService } from './domain/habitService.js';
+import { dateService } from './services/dateService.js';
+import { HabitForm } from './ui/habitForm.js';
+import { HabitList } from './ui/habitList.js';
+import { ProgressChart } from './ui/progressChart.js';
+import { initSidebarToggle } from './ui/toggle.js';
+import { sanitizeUtils } from './utils/sanitize.js';
 
 function renderApp() {
     const habits = habitService.getAllHabits();
@@ -53,7 +55,8 @@ function renderApp() {
 }
 
 // Inicialização após carregamento dos componentes
-    document.addEventListener('components:loaded', () => {
+document.addEventListener('components:loaded', () => {
+    initSidebarToggle();
 
     // 1. Inicializa armazenamento
     habitService.init();

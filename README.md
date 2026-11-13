@@ -1,67 +1,51 @@
-# ✅ HabitFlow
+# HabitFlow
 
-Rastreador de hábitos focado em constância diária. Crie hábitos, marque os últimos 7 dias, veja o horário de conclusão e acompanhe o progresso em um gráfico. Tudo fica salvo no navegador, sem backend e sem frameworks.
+Aplicação de acompanhamento de hábitos feita com HTML, CSS e JavaScript puro. Os dados ficam no navegador, sem backend ou processo de build.
 
-**Tecnologias:** HTML5, CSS3, Vanilla JavaScript (ES6+), Chart.js
-**Deploy:** GitHub Pages / Vercel
+## Funcionalidades
 
----
+- Criar e remover hábitos com nome e categoria.
+- Registrar conclusão diária e horário nos últimos sete dias.
+- Acompanhar métricas e gráfico de progresso semanal.
+- Persistir hábitos no `localStorage` (`@habit_tracker:habits`).
 
-## ✨ Funcionalidades
+## Estrutura
 
-- **Criar e remover hábitos** com nome e categoria, com sanitização das entradas (`escapeHTML`).
-- **Matriz semanal** dos últimos 7 dias; clique em um dia para marcar ou desmarcar.
-- **Horário de conclusão** (`HH:mm`) salvo e exibido na célula e no tooltip.
-- **Métricas:** hábitos ativos, registros de hoje e média de conclusão da semana.
-- **Gráfico de barras** (Chart.js) com os hábitos concluídos por dia.
-- **Persistência** no `localStorage` (chave `@habit_tracker:habits`).
-
----
-
-## 🗂️ Modelo de dados
-
-```json
-{
-  "id": "habit_1760900000000",
-  "name": "Ler 15 páginas",
-  "category": "Estudo",
-  "history": {
-    "2026-10-19": { "completed": true, "timestamp": "20:42" }
-  }
-}
+```text
+components/          Fragmentos HTML carregados pela aplicação
+js/
+  components/        Carregamento e composição dos fragmentos
+  domain/            Regras de negócio dos hábitos
+  services/          Datas e persistência
+  ui/                Formulário, lista, gráfico e interações
+  utils/             Funções auxiliares de apresentação
+  main.js            Ponto de entrada e coordenação da aplicação
+styles/
+  base/              Reset e estilos globais
+  components/        Estilos dos componentes visuais
+  layout/            Header, marca e sidebar
+  responsive/        Ajustes responsivos
 ```
 
----
+Cada módulo mantém uma responsabilidade específica. `js/main.js` coordena a inicialização, enquanto os módulos de domínio, serviços e interface podem evoluir de forma independente.
 
-## 🚀 Como executar
+## Como executar
 
-Não há build nem dependências. Basta abrir o `index.html` no navegador (é necessária internet para carregar as CDNs).
+Como a aplicação carrega os fragmentos HTML com `fetch`, execute-a por um servidor HTTP local em vez de abrir o arquivo diretamente:
 
-## 🚀 Como executar
- 
-Não há build nem dependências.
- 
 ```bash
-# 1. Clone o repositório
-git clone https://github.com/Tiago-abraao/habit-flow-application
- 
-# 2. Entre na pasta do projeto
-cd habit-flow-application
+python3 -m http.server 8000
 ```
-Em seguida, abra o `index.html` no navegador (é necessária internet para carregar as CDNs).
 
----
+Depois, acesse <http://localhost:8000>. É necessária conexão com a internet para carregar Chart.js e Font Awesome pelas CDNs.
 
-## 🗺️ Roadmap
+## Tecnologias
 
-- [ ] Streaks 🔥 (dias seguidos)
-- [ ] Modo escuro / claro
-- [ ] Exportar e importar dados em `.json`
-- [ ] PWA (`manifest.json` + Service Worker)
+HTML5, CSS3, JavaScript ES modules e Chart.js.
 
----
+## Próximos passos
 
-## 👤 Autores
-
-- **Felipe Brito** – Desenvolvedor Full-Stack & Instrutor de Tecnologia
-- **Tiago** – Desenvolvedor 
+- Streaks (dias seguidos)
+- Modo escuro / claro
+- Exportar e importar dados em JSON
+- PWA (manifest e service worker)

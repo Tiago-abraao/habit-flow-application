@@ -36,6 +36,3 @@ export function initSidebarToggle() {
         }
     });
 }
-
-// Inicialização após carregamento dos componentes
-document.addEventListener('components:loaded', initSidebarToggle);

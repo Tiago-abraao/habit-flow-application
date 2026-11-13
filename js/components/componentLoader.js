@@ -1,5 +1,3 @@
-import { initSidebarToggle } from './toggle.js';
-
 const loadComponent = async (element) => {
     const componentName = element.dataset.component;
 
@@ -25,11 +23,8 @@ const loadNestedComponents = (root) => {
 const initializeComponents = async () => {
     await loadNestedComponents(document);
 
-    // avisa que todo o HTML já está na página
+    // Notifica os módulos da interface após inserir todos os fragmentos HTML.
     document.dispatchEvent(new Event("components:loaded"));
-
-    // Inicializa o comportamento da Sidebar AGORA que os elementos já foram injetados
-    initSidebarToggle();
 };
 
 initializeComponents();

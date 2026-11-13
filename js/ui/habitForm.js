@@ -2,7 +2,7 @@
    COMPONENT: habitForm.js
    ========================================================================== */
 
-import { sanitizeUtils } from './sanitize.js';
+import { sanitizeUtils } from '../utils/sanitize.js';
 
 export const HabitForm = {
     init(onAddCallback) {

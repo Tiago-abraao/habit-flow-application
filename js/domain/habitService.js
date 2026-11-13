@@ -1,6 +1,6 @@
 
-import { storageService } from './storageService.js';
-import { dateService } from './dateService.js';
+import { storageService } from '../services/storageService.js';
+import { dateService } from '../services/dateService.js';
 
 export const habitService = {
     habits: [],

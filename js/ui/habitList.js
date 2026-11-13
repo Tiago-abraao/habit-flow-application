@@ -1,4 +1,4 @@
-import { sanitizeUtils } from './sanitize.js';
+import { sanitizeUtils } from '../utils/sanitize.js';
 
 export const HabitList = {
     container: null,
