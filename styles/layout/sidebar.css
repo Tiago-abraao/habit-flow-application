@@ -178,18 +178,3 @@
     font-size: 0.8rem;
     text-align: center;
 }
-
-@media (prefers-reduced-motion: reduce) {
-    .menu-toggle,
-    .sidebar-overlay,
-    .sidebar-nav,
-    .close-btn,
-    .nav-item {
-        transition: none;
-    }
-
-    .close-btn:hover,
-    .nav-item:hover {
-        transform: none;
-    }
-}
