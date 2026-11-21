@@ -114,7 +114,8 @@
     font-weight: 700;
 }
 
-.day-cell[data-tooltip]:hover::after {
+.day-cell[data-tooltip]:hover::after,
+.day-cell[data-tooltip]:focus-visible::after {
     position: absolute;
     bottom: 110%;
     left: 50%;

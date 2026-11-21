@@ -45,7 +45,10 @@ export const HabitList = {
                     <div class="day-cell ${isCompleted ? 'completed' : ''}"
                          data-habit-id="${habit.id}"
                          data-date="${day.dateString}"
-                         data-tooltip="${tooltip}">
+                         data-tooltip="${sanitizeUtils.escapeHTML(tooltip)}"
+                         role="button"
+                         tabindex="0"
+                         aria-label="${sanitizeUtils.escapeHTML(tooltip)}">
                         <span class="day-label">${day.dayName}</span>
                         <span class="day-date">${day.shortDate}</span>
                         ${
@@ -73,7 +76,8 @@ export const HabitList = {
                         <button class="btn-delete"
                                 data-action="delete"
                                 data-id="${habit.id}"
-                                title="Excluir hábito">
+                                title="Excluir hábito"
+                                aria-label="Excluir hábito">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </div>
@@ -100,7 +104,22 @@ export const HabitList = {
 
             if (deleteButton) {
                 const habitId = deleteButton.getAttribute('data-id');
+                deleteButton.blur();
+                deleteButton.removeAttribute('title');
+                deleteButton.disabled = true;
                 onDeleteHabit(habitId);
+            }
+        };
+
+        this.container.onkeydown = (event) => {
+            const dayCell = event.target.closest('.day-cell');
+
+            if (
+                dayCell &&
+                (event.key === 'Enter' || event.key === ' ')
+            ) {
+                event.preventDefault();
+                dayCell.click();
             }
         };
     }

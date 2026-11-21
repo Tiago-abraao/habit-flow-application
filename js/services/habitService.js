@@ -29,11 +29,14 @@ export const habitService = {
     },
 
     deleteHabit(id) {
-        this.habits = this.habits.filter(
-            habit => habit.id !== id
-        );
+        const habitExists = this.habits.some(habit => habit.id === id);
+
+        if (!habitExists) return false;
+
+        this.habits = this.habits.filter(habit => habit.id !== id);
 
         storageService.saveHabits(this.habits);
+        return true;
     },
 
     toggleHabitDay(habitId, dateString) {

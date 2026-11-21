@@ -40,11 +40,13 @@ function renderApp() {
         },
 
         (habitId) => {
-            habitService.deleteHabit(habitId);
-
-            sanitizeUtils.showToast('Hábito removido.');
+            const wasDeleted = habitService.deleteHabit(habitId);
 
             renderApp();
+
+            if (wasDeleted) {
+                sanitizeUtils.showToast('Hábito removido.');
+            }
         }
     );
 
