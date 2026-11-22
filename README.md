@@ -1,6 +1,6 @@
 # HabitFlow
 
-Aplicação de acompanhamento de hábitos feita com HTML, CSS e JavaScript puro. Os dados ficam no navegador, sem backend ou processo de build.
+Aplicação de acompanhamento de hábitos feita com HTML, CSS e JavaScript sem framework, usando Chart.js para o gráfico. Os dados ficam no navegador, sem backend ou processo de build.
 
 ## Funcionalidades
 
